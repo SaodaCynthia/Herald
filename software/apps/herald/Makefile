@@ -14,6 +14,7 @@ APPLICATION_SRCS += led.c
 
 APPLICATION_SRCS += simple_ble.c
 APPLICATION_SRCS += simple_adv.c
+APPLICATION_SRCS += eddystone.c
 
 DEVICE = NRF51
 

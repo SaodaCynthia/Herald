@@ -1,6 +1,5 @@
 #ifndef BOARDS_H
 #define BOARDS_H
-
 #if defined(BOARD_NRF6310)
 	#include "boards/nrf6310.h"
 	#define DEVICE_NAME "nrf6310"
@@ -13,18 +12,10 @@
 #elif defined(BOARD_PCA10003)
 	#include "boards/pca10003.h"
 	#define DEVICE_NAME "pca10003"
-#elif defined(BOARD_SQUALL)
-	#include "squall.h"
+
 #elif defined(BOARD_HERALD)
 	#include "herald.h"
-#elif defined(BOARD_ZIGBEAG)
-	#include "zigbeag.h"
-#elif defined(BOARD_QUITBIT)
-	#include "quitbit.h"
-#elif defined(BOARD_FIRESTORM)
-	#include "firestorm.h"
-#elif defined(BOARD_TORCH)
-	#include "torch.h"
+
 #else
 	#error "Board is not defined in boards.h"
 #endif

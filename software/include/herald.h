@@ -1,6 +1,6 @@
 #ifndef HERALD_H
 #define HERALD_H
-
+#endif
 #include "nrf_gpio.h"
 
 #ifndef DEVICE_NAME
@@ -11,8 +11,8 @@ extern uint8_t MAC_ADDR[6];
 
 
 #define LED_START      13
-#define LED_0          29
-#define LED_1          21
+//#define LED_0          29
+//#define LED_1          21
 	//  #define LED_2          22
 	// #define LED_3          23
 	// #define LED_4          24
@@ -50,6 +50,11 @@ extern uint8_t MAC_ADDR[6];
 #define SW4_PIN8 20
 
 #define NUM_OF_DIGITS 4
+
+
+//FRAM CS
+
+#define FRAM25LB_CS 30
 
 
 
@@ -100,15 +105,15 @@ extern uint8_t MAC_ADDR[6];
 #define RTS_PIN_NUMBER 0
 #define HWFC           false
 
-#define SPIS_MISO_PIN  10    // SPI MISO signal.
-#define SPIS_CSN_PIN   1     // SPI CSN signal.
-#define SPIS_MOSI_PIN  11    // SPI MOSI signal.
-#define SPIS_SCK_PIN   9     // SPI SCK signal.
+#define SPIS_MISO_PIN  28    // SPI MISO signal.
+//#define SPIS_CSN_PIN   1     // SPI CSN signal.
+#define SPIS_MOSI_PIN  29    // SPI MOSI signal.
+#define SPIS_SCK_PIN   25     // SPI SCK signal.
 
-#define SPIM0_SCK_PIN       9u     /**< SPI clock GPIO pin number. */
-#define SPIM0_MOSI_PIN      11u     /**< SPI Master Out Slave In GPIO pin number. */
-#define SPIM0_MISO_PIN      10u     /**< SPI Master In Slave Out GPIO pin number. */
-#define SPIM0_SS_PIN        1u     /**< SPI Slave Select GPIO pin number. */
+//#define SPIM0_SCK_PIN       9u     /**< SPI clock GPIO pin number. */
+//#define SPIM0_MOSI_PIN      11u     /**< SPI Master Out Slave In GPIO pin number. */
+//#define SPIM0_MISO_PIN      10u     /**< SPI Master In Slave Out GPIO pin number. */
+//#define SPIM0_SS_PIN        1u     /**< SPI Slave Select GPIO pin number. */
 
 //#define SPIM1_SCK_PIN       16u     /**< SPI clock GPIO pin number. */
 //#define SPIM1_MOSI_PIN      18u     /**< SPI Master Out Slave In GPIO pin number. */
@@ -119,10 +124,10 @@ extern uint8_t MAC_ADDR[6];
 
 // UART
 // this configuration works with the SPI wires setup
-#define SER_APP_RX_PIN              20     // UART RX pin number.
-#define SER_APP_TX_PIN              22     // UART TX pin number.
-#define SER_APP_CTS_PIN             23     // UART Clear To Send pin number.
-#define SER_APP_RTS_PIN             21     // UART Request To Send pin number.
+//#define SER_APP_RX_PIN              20     // UART RX pin number.
+//#define SER_APP_TX_PIN              22     // UART TX pin number.
+//#define SER_APP_CTS_PIN             23     // UART Clear To Send pin number.
+//#define SER_APP_RTS_PIN             21     // UART Request To Send pin number.
 
 // SPI
 #if 0
@@ -132,7 +137,8 @@ extern uint8_t MAC_ADDR[6];
 #define SER_APP_SPIM0_SS_PIN        21     // SPI Slave Select GPIO pin number
 #define SER_APP_SPIM0_RDY_PIN       19     // SPI READY GPIO pin number
 #define SER_APP_SPIM0_REQ_PIN       18     // SPI REQUEST GPIO pin number
-#else
+#endif
+#if 0
 #define SER_APP_SPIM0_SCK_PIN       23     // SPI clock GPIO pin number.
 #define SER_APP_SPIM0_MOSI_PIN      20     // SPI Master Out Slave In GPIO pin number
 #define SER_APP_SPIM0_MISO_PIN      22     // SPI Master In Slave Out GPIO pin number
@@ -140,6 +146,7 @@ extern uint8_t MAC_ADDR[6];
 #define SER_APP_SPIM0_RDY_PIN       25     // SPI READY GPIO pin number
 #define SER_APP_SPIM0_REQ_PIN       24     // SPI REQUEST GPIO pin number
 #endif
+
 
 // serialization CONNECTIVITY board
 
@@ -149,7 +156,8 @@ extern uint8_t MAC_ADDR[6];
 #define SER_CON_TX_PIN              20    // UART TX pin number.
 #define SER_CON_CTS_PIN             21    // UART Clear To Send pin number. Not used if HWFC is set to false.
 #define SER_CON_RTS_PIN             23    // UART Request To Send pin number. Not used if HWFC is set to false.
-#else
+#endif
+#if 0
 // this configuration works with the SPI wires setup
 #define SER_CON_RX_PIN              20    // UART RX pin number.
 #define SER_CON_TX_PIN              22    // UART TX pin number.
@@ -165,7 +173,8 @@ extern uint8_t MAC_ADDR[6];
 #define SER_CON_SPIS_CSN_PIN        21    // SPI CSN signal.
 #define SER_CON_SPIS_RDY_PIN        19     // SPI READY GPIO pin number.
 #define SER_CON_SPIS_REQ_PIN        18     // SPI REQUEST GPIO pin number.
-#else
+#endif
+#if 0
 #define SER_CON_SPIS_SCK_PIN        23    // SPI SCK signal.
 #define SER_CON_SPIS_MOSI_PIN       22    // SPI MOSI signal.
 #define SER_CON_SPIS_MISO_PIN       20    // SPI MISO signal.
@@ -176,4 +185,3 @@ extern uint8_t MAC_ADDR[6];
 
 #define SER_CONN_ASSERT_LED_PIN     LED_0
 
-#endif

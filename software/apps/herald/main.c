@@ -24,36 +24,41 @@
 #include "app_timer.h"
 #include "simple_ble.h"
 #include "simple_adv.h"
+#include "eddystone.h"
 
-#define SW1_PIN1 4
-#define SW1_PIN2 7
-#define SW1_PIN4 5
-#define SW1_PIN8 8
-
-#define SW2_PIN1 9
-#define SW2_PIN2 11
-#define SW2_PIN4 10
-#define SW2_PIN8 12
-
-#define SW3_PIN1 13
-#define SW3_PIN2 15
-#define SW3_PIN4 14
-#define SW3_PIN8 16
-
-#define SW4_PIN1 17
-#define SW4_PIN2 19
-#define SW4_PIN4 18
-#define SW4_PIN8 20
-
-#define NUM_OF_DIGITS 4
+#define DEVICE_NAME "herald"
+#define PHYSWEB_URL "j2x.us/herald"
 
 #define UVA_COMPANY_IDENTIFIER 0x02E0
 
-#define ROOM_NUMBER_SERVICE 0x13
+#define UVA_MANDATA_SERVICE_HERALD 0x21
 
+typedef struct {
+    uint8_t service;
+    uint8_t version;
+    //uint8_t herald_version;
+    //uint8_t room_no_4_3;
+    //uint8_t room_no_2_1;
+    char room[10];
+    
+} __attribute__((packed)) herald_mandata_t;
 
+static herald_mandata_t herald_mandata = {
+    UVA_MANDATA_SERVICE_HERALD,
+    1, 
+    //1,
+    //0,
+    //0
+    {0x30,0x32,0x34,0x31}
+};
 
-
+static ble_advdata_manuf_data_t mandata = {
+    UVA_COMPANY_IDENTIFIER,
+    {
+        6,
+        (uint8_t*) &herald_mandata
+    }
+};
 
 
 void gpio_init(){
@@ -182,19 +187,22 @@ int main(void) {
 	simple_ble_init(&ble_config);
 	simple_adv_only_name();
 	
-	ble_advdata_manuf_data_t manuf_data;
-	uint8_array_t manuf_data_array;
-	int  sw2_1=sw2<<4|sw1;
-	int  sw4_3=sw4<<4|sw3;
-        uint8_t manuf_srv_data[]={ROOM_NUMBER_SERVICE,sw4_3,sw2_1};
+	//ble_advdata_manuf_data_t manuf_data;
+	//uint8_array_t manuf_data_array;
+	int sw2_1=sw2<<4|sw1;
+	int sw4_3=sw4<<4|sw3;
+	//herald_mandata.room_no_2_1=sw2_1;
+	//herald_mandata.room_no_4_3=sw4_3;
+        //uint8_t manuf_srv_data[]={UVA_MANDATA_SERVICE_HERALD,sw4_3,sw2_1};
 	
-	manuf_data.company_identifier= UVA_COMPANY_IDENTIFIER;
-	manuf_data_array.p_data = manuf_srv_data;
-	manuf_data_array.size= sizeof(manuf_srv_data);
-	manuf_data.data=manuf_data_array;
+	//manuf_data.company_identifier= UVA_COMPANY_IDENTIFIER;
+	//manuf_data_array.p_data = manuf_srv_data;
+	//manuf_data_array.size= sizeof(manuf_srv_data);
+	//manuf_data.data=manuf_data_array;
 
 	// Advertise this
-	simple_adv_manuf_data(&manuf_data);
+	//simple_adv_manuf_data(&manuf_data);
+	 eddystone_with_manuf_adv (PHYSWEB_URL, &mandata);
 
 	// Enter main loop
 	while (1) {
