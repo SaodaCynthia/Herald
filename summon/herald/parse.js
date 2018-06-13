@@ -20,7 +20,7 @@ var parse_advertisement = function (advertisement, cb) {
                         var version = herald.readUInt8(0);
 
                         //var room = herald.toString('utf8', 1);
-                        var room = herald.readUIntBE(2,2);
+                        var room = herald.readUIntBE(1,2);
 
                         var out = {
                             device: 'Herald',
