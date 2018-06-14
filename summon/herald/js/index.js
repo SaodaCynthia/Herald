@@ -80,27 +80,13 @@ var app = {
         if (advertisement.localName == 'herald' &&
                 advertisement.manufacturerData) { 
             var mandata = advertisement.manufacturerData;
-
+	    var roomdata=mandata.getUint8(1);
             // Save when we got this.
             last_update = Date.now();
 			
 			//check that it's a data packet
-			app.log(mandata);
-			if (mandata[0] == 224) {
-				//app.log(mandata);
-				if(mandata[3] || mandata[4]) {
-        			document.getElementById("roomVal").innerHTML = "yes";
-				} else {
-        			document.getElementById("roomVal").innerHTML = "no";
-				}
-
-
-				//if(mandata[5]) {
-        			//document.getElementById("luxVal").innerHTML = "yes";
-				//} else {
-        			//document.getElementById("luxVal").innerHTML = "no";
-				//}
-			}
+		app.log(mandata);
+	        document.getElementById("roomVal").innerHTML = roomdata;
 
 
             app.update_time_ago();
