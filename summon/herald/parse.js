@@ -21,7 +21,7 @@ var parse_advertisement = function (advertisement, cb) {
 
                         //var room = herald.toString('utf8', 1);
                         //var room = herald.toString();
-                        var room=hex2a('herald');
+                        var room=hex2a(herald);
 
                         var out = {
                             device: 'Herald',
