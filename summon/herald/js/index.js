@@ -1,7 +1,7 @@
 /* JavaScript for Blink Summon UI */
 
-var deviceId = "C0:98:E5:90:00:05";                                                 // while testing, replace with address of a BLE peripheral
-var deviceName = "BLE Device";                                                      // while testing, replace with desired name
+var deviceId = "C0:98:E5:90:00:05";                                         // while testing, replace with address of a BLE peripheral
+var deviceName = "Herald";                                                      // while testing, replace with desired name
 
 var timer;
 
@@ -77,7 +77,7 @@ var app = {
         var advertisement = device.advertisement;
 
         // Check this is something we can parse
-        if (advertisement.localName == 'squall+PIR' &&
+        if (advertisement.localName == 'herald' &&
                 advertisement.manufacturerData) { 
             var mandata = advertisement.manufacturerData;
 
@@ -89,17 +89,17 @@ var app = {
 			if (mandata[0] == 224) {
 				//app.log(mandata);
 				if(mandata[3] || mandata[4]) {
-        			document.getElementById("tempVal").innerHTML = "yes";
+        			document.getElementById("roomVal").innerHTML = "yes";
 				} else {
-        			document.getElementById("tempVal").innerHTML = "no";
+        			document.getElementById("roomVal").innerHTML = "no";
 				}
 
 
-				if(mandata[5]) {
-        			document.getElementById("luxVal").innerHTML = "yes";
-				} else {
-        			document.getElementById("luxVal").innerHTML = "no";
-				}
+				//if(mandata[5]) {
+        			//document.getElementById("luxVal").innerHTML = "yes";
+				//} else {
+        			//document.getElementById("luxVal").innerHTML = "no";
+				//}
 			}
 
 
