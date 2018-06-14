@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="50" unitdist="mil" unit="mil" style="lines" multiple="1" display="yes" altdistance="5" altunitdist="mil" altunit="mil"/>
+<grid distance="2.54" unitdist="mm" unit="mm" style="lines" multiple="1" display="yes" altdistance="0.00254" altunitdist="mm" altunit="mm"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="yes"/>
@@ -74,16 +74,18 @@
 <library>
 <packages>
 <package name="SWTICH-6">
-<smd name="1" x="-3.129" y="1.683" dx="1" dy="2.5" layer="1" rot="R90"/>
-<smd name="C1" x="-3.129" y="0.143" dx="1" dy="2.5" layer="1" rot="R90"/>
-<smd name="4" x="-3.129" y="-1.397" dx="1" dy="2.5" layer="1" rot="R90"/>
-<smd name="8" x="3.438203125" y="1.68613125" dx="1" dy="2.5" layer="1" rot="R90"/>
-<smd name="C2" x="3.438203125" y="0.14613125" dx="1" dy="2.5" layer="1" rot="R90"/>
-<smd name="2" x="3.438203125" y="-1.39386875" dx="1" dy="2.5" layer="1" rot="R90"/>
-<wire x1="-3.0828" y1="2.684" x2="3.4006" y2="2.684" width="0.1524" layer="1"/>
-<wire x1="-3.0828" y1="-2.4134" x2="3.4468" y2="-2.4134" width="0.1524" layer="1"/>
-<circle x="-3.2368" y="3.3154" radius="0.22049375" width="0.1524" layer="21"/>
-<text x="-3.129" y="-4.477" size="1.27" layer="21" font="vector">&gt;Value</text>
+<text x="-0.6144" y="-6.1534" size="1.6764" layer="21" font="vector" ratio="12">&gt;Value</text>
+<smd name="1" x="0" y="2.54" dx="2.54" dy="1.27" layer="1"/>
+<smd name="C1" x="0" y="0" dx="2.54" dy="1.27" layer="1"/>
+<smd name="4" x="0" y="-2.54" dx="2.54" dy="1.27" layer="1"/>
+<smd name="8" x="6.477" y="2.54" dx="2.54" dy="1.27" layer="1"/>
+<smd name="C2" x="6.477" y="0" dx="2.54" dy="1.27" layer="1"/>
+<smd name="2" x="6.477" y="-2.54" dx="2.54" dy="1.27" layer="1"/>
+<wire x1="0" y1="3.8354" x2="6.3246" y2="3.8354" width="0.1524" layer="25"/>
+<wire x1="0" y1="-4.064" x2="6.5532" y2="-4.064" width="0.1524" layer="25"/>
+<wire x1="6.5532" y1="-4.064" x2="6.5532" y2="-4.0386" width="0.1524" layer="25"/>
+<circle x="0" y="5.08" radius="0.05679375" width="0.6096" layer="25"/>
+<text x="1.1938" y="4.4196" size="1.778" layer="21" font="vector" ratio="12">&gt;name</text>
 </package>
 </packages>
 <symbols>
