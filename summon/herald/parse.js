@@ -19,9 +19,9 @@ var parse_advertisement = function (advertisement, cb) {
                         // Version is the first thing.
                         var version = herald.readUInt8(0);
 
-                        //var room = herald.toString('utf8', 1);
+                        var room = herald.toString('utf8', 1);
                         //var room = herald.toString();
-                        var room=hex2a(herald);
+                        //var room=hex2a(herald);
 
                         var out = {
                             device: 'Herald',
