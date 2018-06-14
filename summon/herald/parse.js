@@ -26,6 +26,7 @@ var parse_advertisement = function (advertisement, cb) {
                         var out = {
                             device: 'Herald',
                             room_string: room,
+                            version: version,
                             _meta: {
                                 room: room
                             },
