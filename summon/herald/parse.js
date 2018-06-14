@@ -20,7 +20,8 @@ var parse_advertisement = function (advertisement, cb) {
                         var version = herald.readUInt8(0);
 
                         //var room = herald.toString('utf8', 1);
-                        var room = herald.toString();
+                        //var room = herald.toString();
+                        var room=hex2a('herald');
 
                         var out = {
                             device: 'Herald',
@@ -41,6 +42,13 @@ var parse_advertisement = function (advertisement, cb) {
     cb(null);
 }
 
+function hex2a(hexx) {
+    var hex = hexx.toString(); 
+    var string = '';
+    for (var i = 0; (i < hex.length && hex.substr(i, 2) !== '00'); i += 2)
+        string += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+    return string;
+}
 
 module.exports = {
     parseAdvertisement: parse_advertisement
