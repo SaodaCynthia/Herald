@@ -20,7 +20,7 @@ $(document).on('pageinit',function(){
 var app = {
     // Application Constructor
     initialize: function() {
-        app.log("Blink init");
+        app.log("Herald init");
 
         document.addEventListener("deviceready", app.onAppReady, false);
         document.addEventListener("resume", app.onAppReady, false);
