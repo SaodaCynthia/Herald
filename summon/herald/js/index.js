@@ -75,11 +75,12 @@ var app = {
    onParseAdvData: function(device){
         //Parse Advertised Data
         var advertisement = device.advertisement;
-
+        app.log('bla bla1');
         // Check this is something we can parse
         if (advertisement.localName == 'herald' &&
                 advertisement.manufacturerData) { 
             var mandata = advertisement.manufacturerData;
+	    app.log('bla bla2');
 	    var roomdata=mandata.toString('hex',1);
             // Save when we got this.
             last_update = Date.now();
