@@ -80,7 +80,7 @@ var app = {
         if (advertisement.localName == 'herald' &&
                 advertisement.manufacturerData) { 
             var mandata = advertisement.manufacturerData;
-	    var roomdata=mandata.getUint8(1);
+	    var roomdata=mandata.toString('hex',1);
             // Save when we got this.
             last_update = Date.now();
 			
