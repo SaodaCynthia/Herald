@@ -22,7 +22,7 @@ var parse_advertisement = function (advertisement, cb) {
                         //var room = herald.readUInt16BE(1).toString();
                         //var room = herald.toString();
                         //var room=hex2a(herald);
-                        var room=herald.toString('hex',1);
+                        var room=herald.toString('ascii',1);
 
                         var out = {
                             device: 'Herald',
