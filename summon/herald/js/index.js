@@ -81,7 +81,7 @@ var app = {
                 advertisement.manufacturerData) { 
             var mandata = advertisement.manufacturerData;
 	    app.log('bla bla2');
-	    var roomdata=mandata.toString('ascii',1);
+	    var roomdata=mandata.readUint32(1);
             // Save when we got this.
             last_update = Date.now();
 			
