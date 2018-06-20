@@ -81,7 +81,7 @@ var app = {
                 advertisement.manufacturerData) { 
             var mandata = advertisement.manufacturerData.slice(4);
 	    app.log('bla bla2');
-	    var roomdata=mandata.toString('hex',1,1);
+	    var roomdata=mandata.toString('ascii',1,1);
             // Save when we got this.
             last_update = Date.now();
 			
