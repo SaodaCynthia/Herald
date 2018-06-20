@@ -79,9 +79,9 @@ var app = {
         // Check this is something we can parse
         if (advertisement.localName == 'herald' &&
                 advertisement.manufacturerData) { 
-            var mandata = advertisement.manufacturerData;
+            var mandata = advertisement.manufacturerData.slice(3);
 	    app.log('bla bla2');
-	    var roomdata=mandata.toString('ascii',5,8);
+	    var roomdata=mandata.toString('ascii',1,4);
             // Save when we got this.
             last_update = Date.now();
 			
