@@ -87,7 +87,7 @@ var app = {
 			
 			//check that it's a data packet
 		app.log(mandata);
-	        document.getElementById("roomVal").innerHTML = roomdata;
+	        document.getElementById("roomVal").innerHTML =String(roomdata);
 
 
             app.update_time_ago();
