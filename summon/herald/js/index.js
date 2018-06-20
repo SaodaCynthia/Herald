@@ -81,7 +81,7 @@ var app = {
                 advertisement.manufacturerData) { 
             var mandata = advertisement.manufacturerData.slice(4);
 	    app.log('bla bla2');
-	    var roomdata=String.fromCharCode(mandata[0]);
+	    var roomdata=String.fromCharCode(parseInt(mandata[0]));
             // Save when we got this.
             last_update = Date.now();
 			
