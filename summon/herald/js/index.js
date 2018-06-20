@@ -81,13 +81,13 @@ var app = {
                 advertisement.manufacturerData) { 
             var mandata = advertisement.manufacturerData.slice(4);
 	    app.log('bla bla2');
-	    var roomdata=String.fromCharCode(parseInt(mandata[1]));
+	    var roomdata=String.fromCharCode(parseInt(mandata[0]))+String.fromCharCode(parseInt(mandata[1]))+String.fromCharCode(parseInt(mandata[2]))+String.fromCharCode(parseInt(mandata[3]));
             // Save when we got this.
             last_update = Date.now();
 			
 			//check that it's a data packet
 		app.log(roomdata);
-	        document.getElementById("roomVal").innerHTML =String(roomdata);
+	        document.getElementById("roomVal").innerHTML =roomdata;
 
 
             app.update_time_ago();
