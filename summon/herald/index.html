@@ -10,14 +10,15 @@
         <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
         <link rel="stylesheet" href="css/font-awesome-4.4.0/css/font-awesome.min.css">
 
-        <link rel="shortcut icon" type="image/x-icon" href="img/blink.ico" />
+        <link rel="shortcut icon" type="image/x-icon" href="img/herald.png" />
 
-        <title>Blink</title>
+        <title>Herald</title>
     </head>
     <body id="main_view" data-role="main" class="frame" style="text-align:center; font-family:sans-serif-thin;color:#888">
 
         <div data-role="header" data-theme="b">
                 </br>
+                <img src="img/herald.png" style="width:64px;vertical-align:middle;margin-right:4px"/>
                 <text align=center style="font-size: 250%">
                     <span style="font-weight: bold; color:#0099FF">H</span>
                     <span style="font-weight: bold; color:#0099DD">E</span>
@@ -36,13 +37,10 @@
 
         <table border="0" align=center style="width:90%; font-family:'HelveticaNeue-Light', sans-serif-light, Arial, sans-serif; margin-top:10px;">
             <tr>
-                <td align=center class="charTitleCell"><p style="width:80%">Movement at Last Update:</p></td>
-                <td align=center class="charValueCell" id="tempVal">no</td>
+                <td align=center class="charTitleCell"><p style="width:90%">Broadcasting from Room Number:</p></td>
+                <td align=center class="charValueCell" id="roomVal">0</td>
             </tr>
-            <tr>
-                <td align=center class="charTitleCell"><p style="width:80%">Movement in Last Minute:</p></td>
-                <td align=center class="charValueCell" id="luxVal">no</td>
-            </tr>
+           
         </table>
         </br>
 
@@ -53,8 +51,8 @@
        </div>
 
         <div data-role="popup" data-overlay-theme="b" id="about_page">
-            <img id="centralblink" alt = "blink_img" src="img/blink.png" name="blinkimg" style="width:50%; margin:5px 0;"/></br>
-            <p>Blink: Ubiquitous low-energy proximity sensing.</p>
+            <img id="centralblink" alt = "herald_img" src="img/herald.png" name="heraldimg" style="width:50%; margin:5px 0;"/></br>
+            <p>Herald: room number locator</p>
             <p>Find out more at <a href="https://github.com/lab11/blees">https://github.com/lab11/blees</a>.</p>
         </div>
 
@@ -70,6 +68,6 @@
         <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
         <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
         <script type="text/javascript" src="js/bluetooth.js"></script>
-        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
     </body>
 </html>

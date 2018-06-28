@@ -1,7 +1,7 @@
 /* JavaScript for Blink Summon UI */
 
-var deviceId = "C0:98:E5:90:00:05";                                                 // while testing, replace with address of a BLE peripheral
-var deviceName = "BLE Device";                                                      // while testing, replace with desired name
+var deviceId = "C0:98:E5:90:00:05";                                         // while testing, replace with address of a BLE peripheral
+var deviceName = "Herald";                                                      // while testing, replace with desired name
 
 var timer;
 
@@ -20,7 +20,7 @@ $(document).on('pageinit',function(){
 var app = {
     // Application Constructor
     initialize: function() {
-        app.log("Blink init");
+        app.log("Herald init");
 
         document.addEventListener("deviceready", app.onAppReady, false);
         document.addEventListener("resume", app.onAppReady, false);
@@ -75,32 +75,19 @@ var app = {
    onParseAdvData: function(device){
         //Parse Advertised Data
         var advertisement = device.advertisement;
-
+        app.log('bla bla1');
         // Check this is something we can parse
-        if (advertisement.localName == 'squall+PIR' &&
+        if (advertisement.localName == 'herald' &&
                 advertisement.manufacturerData) { 
-            var mandata = advertisement.manufacturerData;
-
+            var mandata = advertisement.manufacturerData.slice(4);
+	    app.log('bla bla2');
+	    var roomdata=String.fromCharCode(parseInt(mandata[0]))+String.fromCharCode(parseInt(mandata[1]))+String.fromCharCode(parseInt(mandata[2]))+String.fromCharCode(parseInt(mandata[3]));
             // Save when we got this.
             last_update = Date.now();
 			
 			//check that it's a data packet
-			app.log(mandata);
-			if (mandata[0] == 224) {
-				//app.log(mandata);
-				if(mandata[3] || mandata[4]) {
-        			document.getElementById("tempVal").innerHTML = "yes";
-				} else {
-        			document.getElementById("tempVal").innerHTML = "no";
-				}
-
-
-				if(mandata[5]) {
-        			document.getElementById("luxVal").innerHTML = "yes";
-				} else {
-        			document.getElementById("luxVal").innerHTML = "no";
-				}
-			}
+		app.log(roomdata);
+	        document.getElementById("roomVal").innerHTML =roomdata;
 
 
             app.update_time_ago();

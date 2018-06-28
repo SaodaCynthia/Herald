@@ -19,11 +19,19 @@ var parse_advertisement = function (advertisement, cb) {
                         // Version is the first thing.
                         var version = herald.readUInt8(0);
 
-                        var room = herald.toString('utf8', 1);
+                        //var room = herald.readUInt16BE(1).toString();
+                        //var room = herald.toString();
+                        //var room=hex2a(herald);
+                        var room=herald.toString('ascii',1);
 
                         var out = {
                             device: 'Herald',
+<<<<<<< HEAD
                             room_string: herald,
+=======
+                            room_string: room,
+                            version: version,
+>>>>>>> b4dd573d6f26334c2e0aa121b50acf3feac3e43f
                             _meta: {
                                 room: room
                             },
@@ -40,6 +48,13 @@ var parse_advertisement = function (advertisement, cb) {
     cb(null);
 }
 
+//function hex2a(hexx) {
+   // var hex = hexx.toString(); 
+    //var string = '';
+    //for (var i = 0; (i < hex.length && hex.substr(i, 2) !== '00'); i += 2)
+        //string += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+   // return string;
+//}
 
 module.exports = {
     parseAdvertisement: parse_advertisement
