@@ -23,7 +23,7 @@ var parse_advertisement = function (advertisement, cb) {
 
                         var out = {
                             device: 'Herald',
-                            room_string: room,
+                            room_string: herald,
                             _meta: {
                                 room: room
                             },
