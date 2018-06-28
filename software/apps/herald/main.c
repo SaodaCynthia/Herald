@@ -183,9 +183,9 @@ int main(void) {
 	uint32_t sw1= gpio_get_Sw1Data();
 	//nrf_delay_ms(100);
 	uint32_t sw2= gpio_get_Sw2Data();
-	nrf_delay_ms(100);
-	//uint32_t sw3= gpio_get_Sw3Data();
-	nrf_delay_ms(100);
+	//nrf_delay_ms(100);
+	uint32_t sw3= gpio_get_Sw3Data();
+	//nrf_delay_ms(100);
 	uint32_t sw4= gpio_get_Sw4Data();
 	//nrf_delay_ms(100);
 	
