@@ -37,9 +37,11 @@ typedef struct {
     uint8_t service;
     uint8_t version;
     //uint8_t herald_version;
-    //uint8_t room_no_4_3;
-    //uint8_t room_no_2_1;
-    char room[10];
+    uint8_t room_no_4;
+    uint8_t room_no_3;
+    uint8_t room_no_2;
+    uint8_t room_no_1;
+    //char room[10];
     
 } __attribute__((packed)) herald_mandata_t;
 
@@ -47,15 +49,18 @@ static herald_mandata_t herald_mandata = {
     UVA_MANDATA_SERVICE_HERALD,
     1, 
     //1,
-    //0,
-    //0
-    {0x30,0x32,0x34,0x31}
+    0,
+    0,
+    0,
+    0
+    //{0x30,0x32},
+    //{0x34,0x31}
 };
 
 static ble_advdata_manuf_data_t mandata = {
     UVA_COMPANY_IDENTIFIER,
     {
-        6,
+       6,
         (uint8_t*) &herald_mandata
     }
 };
@@ -167,32 +172,34 @@ static simple_ble_config_t ble_config = {
 	.platform_id = 0x00,              // used as 4th octect in device BLE address
 	.device_id = DEVICE_ID_DEFAULT,
 	.adv_name = DEVICE_NAME,       // used in advertisements if there is room
-	.adv_interval = MSEC_TO_UNITS(500, UNIT_0_625_MS),
-	.min_conn_interval = MSEC_TO_UNITS(500, UNIT_1_25_MS),
-	.max_conn_interval = MSEC_TO_UNITS(1000, UNIT_1_25_MS),
+	.adv_interval = MSEC_TO_UNITS(1000, UNIT_0_625_MS),
+	.min_conn_interval = MSEC_TO_UNITS(1000, UNIT_1_25_MS),
+	.max_conn_interval = MSEC_TO_UNITS(1500, UNIT_1_25_MS),
 };
 
 int main(void) {
         
 	gpio_init();
 	uint32_t sw1= gpio_get_Sw1Data();
-	nrf_delay_ms(100);
+	//nrf_delay_ms(100);
 	uint32_t sw2= gpio_get_Sw2Data();
 	nrf_delay_ms(100);
-	uint32_t sw3= gpio_get_Sw3Data();
+	//uint32_t sw3= gpio_get_Sw3Data();
 	nrf_delay_ms(100);
 	uint32_t sw4= gpio_get_Sw4Data();
-	nrf_delay_ms(100);
+	//nrf_delay_ms(100);
 	
 	simple_ble_init(&ble_config);
 	simple_adv_only_name();
 	
 	//ble_advdata_manuf_data_t manuf_data;
 	//uint8_array_t manuf_data_array;
-	int sw2_1=sw2<<4|sw1;
-	int sw4_3=sw4<<4|sw3;
-	//herald_mandata.room_no_2_1=sw2_1;
-	//herald_mandata.room_no_4_3=sw4_3;
+	//int sw2_1=sw2<<4|sw1;
+	//int sw4_3=sw4<<4|sw3;
+        herald_mandata.room_no_1=sw1+0x30;
+	herald_mandata.room_no_2=sw2+0x30;
+	herald_mandata.room_no_3=sw3+0x30;
+	herald_mandata.room_no_4=sw4+0x30;
         //uint8_t manuf_srv_data[]={UVA_MANDATA_SERVICE_HERALD,sw4_3,sw2_1};
 	
 	//manuf_data.company_identifier= UVA_COMPANY_IDENTIFIER;
