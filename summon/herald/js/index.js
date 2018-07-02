@@ -94,7 +94,7 @@ var app = {
 
         } else {
             // Not a Blink packet...
-            app.log('Advertisement was not Blink.');
+            app.log('Advertisement was not Herald.');
         }
 
     },
