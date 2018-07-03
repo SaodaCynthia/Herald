@@ -32,11 +32,11 @@ SOFTDEVICE_MODEL = s110
 
 SDK_VERSION = 9
 
-LIBRARY_PATHS += /home/cynthia/software/include
-SOURCE_PATHS += /home/cynthia/software/src
+LIBRARY_PATHS += /home/cynthia/Herald/software/include
+SOURCE_PATHS += /home/cynthia/Herald/software/src
 
 CFLAGS += -Os
 GDB_PORT_NUMBER = 2331
 
-NRF_BASE_PATH ?= /home/cynthia/software/nrf5x-base
+NRF_BASE_PATH ?= /home/cynthia/Herald/software/nrf5x-base
 include $(NRF_BASE_PATH)/make/Makefile
