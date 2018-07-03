@@ -172,9 +172,9 @@ static simple_ble_config_t ble_config = {
 	.platform_id = 0x00,              // used as 4th octect in device BLE address
 	.device_id = DEVICE_ID_DEFAULT,
 	.adv_name = DEVICE_NAME,       // used in advertisements if there is room
-	.adv_interval = MSEC_TO_UNITS(1000, UNIT_0_625_MS),
-	.min_conn_interval = MSEC_TO_UNITS(1000, UNIT_1_25_MS),
-	.max_conn_interval = MSEC_TO_UNITS(1500, UNIT_1_25_MS),
+	.adv_interval = MSEC_TO_UNITS(50, UNIT_0_625_MS),
+	.min_conn_interval = MSEC_TO_UNITS(500, UNIT_1_25_MS),
+	.max_conn_interval = MSEC_TO_UNITS(1000, UNIT_1_25_MS),
 };
 
 int main(void) {
@@ -188,9 +188,12 @@ int main(void) {
 	//nrf_delay_ms(100);
 	uint32_t sw4= gpio_get_Sw4Data();
 	//nrf_delay_ms(100);
-	
+	nrf_gpio_cfg_output(29);
+	nrf_gpio_pin_set(29);
 	simple_ble_init(&ble_config);
 	simple_adv_only_name();
+	
+	
 	
 	//ble_advdata_manuf_data_t manuf_data;
 	//uint8_array_t manuf_data_array;
@@ -208,12 +211,19 @@ int main(void) {
 	//manuf_data.data=manuf_data_array;
 
 	// Advertise this
-	//simple_adv_manuf_data(&manuf_data);
+	 //simple_adv_manuf_data(&mandata);
+	
 	 eddystone_with_manuf_adv (PHYSWEB_URL, &mandata);
 
 	// Enter main loop
 	while (1) {
+		//nrf_gpio_pin_clear(29);
+		//nrf_delay_ms(1000);
+		//nrf_gpio_pin_set(29);
+		//nrf_delay_ms(1000);
 		power_manage();
+		
+		
 	}
 }
 
