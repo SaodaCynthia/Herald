@@ -23,16 +23,14 @@ var parse_advertisement = function (advertisement, cb) {
                         //var room = herald.toString();
                         //var room=hex2a(herald);
                         var room=herald.toString('ascii',1);
+			console.log(room);
 
                         var out = {
                             device: 'Herald',
-<<<<<<< HEAD
                             room_string: herald,
-=======
                             room_string: room,
                             version: version,
->>>>>>> b4dd573d6f26334c2e0aa121b50acf3feac3e43f
-                            _meta: {
+			    _meta: {
                                 room: room
                             },
                         };
