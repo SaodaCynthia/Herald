@@ -25,6 +25,7 @@
 #include "simple_ble.h"
 #include "simple_adv.h"
 #include "eddystone.h"
+#include "fm25l04b.h"
 
 #define DEVICE_NAME "herald"
 #define PHYSWEB_URL "j2x.us/herald"
@@ -41,6 +42,8 @@ typedef struct {
     uint8_t room_no_3;
     uint8_t room_no_2;
     uint8_t room_no_1;
+    uint32_t counter;
+    uint32_t seq_no;
     //char room[10];
     
 } __attribute__((packed)) herald_mandata_t;
@@ -52,18 +55,40 @@ static herald_mandata_t herald_mandata = {
     0,
     0,
     0,
+    0,
+    0,
     0
-    //{0x30,0x32},
-    //{0x34,0x31}
 };
 
 static ble_advdata_manuf_data_t mandata = {
     UVA_COMPANY_IDENTIFIER,
     {
-       6,
+       10,
         (uint8_t*) &herald_mandata
     }
 };
+
+static nrf_drive_spi_t _spi=NRF_DRV_SPI_INSTANCE(0);
+
+fm25l04b_t fm25l04b= {
+	.spi = &_spi,
+	.sck_pin = SPIO_CONFIG_SCK_PIN,
+	.mosi_pin = SPIO_CONFIG_MOSI_PIN,
+	.miso_pin= SPIO_CONFIG_MISO_PIN,
+	.ss_pin = FM25L04B_nCS
+};
+
+#define MAGIC_ID 0x63F2BA02
+#define FRAM_ADDR_COUNTER FRAM_ADDR_MAGIC + 4;
+#define FRAM_ADDR_SEQ_NO FRAM_ADDR_COUNTER + 4;
+
+typedef struct {
+	uint32_t magic;
+	uint32_t counter;
+	uint32_t seq_no;
+}__attribute__((packed)) herald_fram_t;
+
+static herald_fram_t herald_fram;
 
 
 void gpio_init(){
@@ -172,9 +197,9 @@ static simple_ble_config_t ble_config = {
 	.platform_id = 0x00,              // used as 4th octect in device BLE address
 	.device_id = DEVICE_ID_DEFAULT,
 	.adv_name = DEVICE_NAME,       // used in advertisements if there is room
-	.adv_interval = MSEC_TO_UNITS(50, UNIT_0_625_MS),
-	.min_conn_interval = MSEC_TO_UNITS(500, UNIT_1_25_MS),
-	.max_conn_interval = MSEC_TO_UNITS(1000, UNIT_1_25_MS),
+	.adv_interval = MSEC_TO_UNITS(500, UNIT_0_625_MS),
+	.min_conn_interval = MSEC_TO_UNITS(1000, UNIT_1_25_MS),
+	.max_conn_interval = MSEC_TO_UNITS(1500, UNIT_1_25_MS),
 };
 
 int main(void) {
@@ -191,7 +216,21 @@ int main(void) {
 	nrf_gpio_cfg_output(29);
 	nrf_gpio_pin_set(29);
 	simple_ble_init(&ble_config);
-	simple_adv_only_name();
+	
+	fm24l04b_read(&fm25l04b, FRAM_ADDR_MAGIC, (uint8_t*) &herald_fram, sizeof		(herald_fram_t));
+	if (herald_fram.magic != MAGIC_ID) {
+		herald_fram.magic= MAGIC_ID;
+		fm25l04b_write(&fm25l04b, FRAM_ADDR_MAGIC, (uint8_t*) &herald_fram, sizeof(herald_fram_t));
+		herald_fram.counter =0;
+		herald_fram.seq_no = 0;
+		
+}
+	herald_fram.counter++;
+	herald_fram.sequence++;
+	fm25l04b_write(&fm25l04b, FRAM_ADDR_COUNTER, ((uint8_t*) &herald_fram)+4, 8);
+	herald_mandata.counter=herald_fram.counter;
+	herald_mandata.seq_no= herald_fram.seq_no;
+
 	
 	
 	
@@ -211,7 +250,8 @@ int main(void) {
 	//manuf_data.data=manuf_data_array;
 
 	// Advertise this
-	 //simple_adv_manuf_data(&mandata);
+	 simple_adv_only_name();
+	 simple_adv_manuf_data(&mandata);
 	
 	 eddystone_with_manuf_adv (PHYSWEB_URL, &mandata);
 
