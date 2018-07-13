@@ -32,8 +32,8 @@ var parse_advertisement = function (advertisement, cb) {
                             
                             room_string: room,
                             version: version,
-			    counter: counter;
-			    sequence_no: seq_no;
+			    counter: counter,
+			    sequence_no: seq_no,
 			    _meta: {
                                 room: room
                             },
