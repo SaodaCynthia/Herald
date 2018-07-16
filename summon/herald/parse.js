@@ -22,7 +22,7 @@ var parse_advertisement = function (advertisement, cb) {
                         //var room = herald.readUInt16BE(1).toString();
                         //var room = herald.toString();
                         //var room=hex2a(herald);
-                        var room=herald.toString('ascii',1,4);
+                        var room=herald.toString('ascii',1,5);
 			var counter=herald.readUInt8(5,6);
 			var seq_no=herald.readUInt8(7,8);
 			console.log(room);
