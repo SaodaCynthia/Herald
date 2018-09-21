@@ -22,17 +22,19 @@ var parse_advertisement = function (advertisement, cb) {
                         //var room = herald.readUInt16BE(1).toString();
                         //var room = herald.toString();
                         //var room=hex2a(herald);
-                        var room=herald.toString('ascii',1);
+                        var room=herald.toString('ascii',1,5);
+			var counter=herald.readUIntLE(5,4);
+			var seq_no=herald.readUIntLE(9,4);
+			console.log(room);
 
                         var out = {
                             device: 'Herald',
-<<<<<<< HEAD
-                            room_string: herald,
-=======
+                            
                             room_string: room,
                             version: version,
->>>>>>> b4dd573d6f26334c2e0aa121b50acf3feac3e43f
-                            _meta: {
+			    counter: counter,
+			    sequence_no: seq_no,
+			    _meta: {
                                 room: room
                             },
                         };
