@@ -105,10 +105,10 @@ extern uint8_t MAC_ADDR[6];
 #define RTS_PIN_NUMBER 0
 #define HWFC           false
 
-#define SPIS_MISO_PIN  28    // SPI MISO signal.
+#define SPI0_MISO_PIN  28    // SPI MISO signal.
 //#define SPIS_CSN_PIN   1     // SPI CSN signal.
-#define SPIS_MOSI_PIN  29    // SPI MOSI signal.
-#define SPIS_SCK_PIN   25     // SPI SCK signal.
+#define SPI0_MOSI_PIN  29    // SPI MOSI signal.
+#define SPI0_SCK_PIN   25     // SPI SCK signal.
 
 //#define SPIM0_SCK_PIN       9u     /**< SPI clock GPIO pin number. */
 //#define SPIM0_MOSI_PIN      11u     /**< SPI Master Out Slave In GPIO pin number. */
