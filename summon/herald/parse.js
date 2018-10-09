@@ -25,9 +25,7 @@ var parse_advertisement = function (advertisement, cb) {
                         var room=herald.toString('ascii',1,5);
 			var counter=herald.readUIntLE(5,4);
 			var seq_no=herald.readUIntLE(9,4);
-			console.log(room);
-
-                        var out = {
+			var out = {
                             device: 'Herald',
                             
                             room_string: room,
